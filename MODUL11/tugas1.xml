@@ -1,0 +1,31 @@
+<?xml version=1?>
+<dataDiri>
+    <nama>
+        <awal>Fitra</awal>
+        <akhir>Salam</awal>
+    </nama>
+
+    <status>Mahasiswa</status>
+
+    <jenisKelamin>Laki-laki</jenisKelamin>
+
+    <alamat>
+        <kelurahan>Rejosari</kelurahan>
+        <kecamatan>Rejosari</kecamatan>
+        <kota>Kotabumi</kota>
+    </alamat>
+
+    <orangTua>
+        <bapak>Mr.Ambari</bapak>
+        <ibu>Yus</ibu>
+    </orangTua>
+    
+    <socialMedia>
+        <instagram>vtrasalam</instagram>
+    </socialMedia>
+
+    <hobi>
+        <hobi1>Main game</hobi1>
+        <hobi2>Gak tau pengen beli truk</hobi2>
+    </hobi>
+</dataDiri>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 2</title>
+</head>
+<body>
+    <div name = "nama">Contoh getElementByName</div>
+    <div class="class">Contoh getElementByClassName</div>
+    <h1>Contoh getElementByTagName</h1>
+    <p>Contoh querySelector</p>
+    <p>Contoh querySelectorAll</p>
+
+    <button onclick="berubahWarna(document.getElementsByName('nama'), 'red', 'array')">Ubah getElementByName</button>
+    <button onclick="berubahWarna(document.getElementsByClassName('class'), 'green', 'array')">Ubah getElementByClassName</button>
+    <button onclick="berubahWarna(document.getElementsByTagName('h1'), 'blue', 'array')">Ubah getElementByTagName</button>
+    <button onclick="berubahWarna(document.querySelector('p'), 'yellow', 'nonarray')">Ubah querySelector</button>
+    <button onclick="berubahWarna(document.querySelectorAll('p'), 'purple', 'array')">Ubah querySelectorAll</button>
+<script>
+    function berubahWarna(target, warna, bentuk){
+        if(bentuk == 'array'){
+            for(i = 0 ; i < target.length ; i++){
+                target[i].style.color = warna;
+            }
+        }
+        else{
+            target.style.color = warna;
+        }
+    }
+</script>
+</body>
+</html>

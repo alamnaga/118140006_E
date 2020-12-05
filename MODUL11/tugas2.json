@@ -1,0 +1,26 @@
+{
+    "datadiri": {
+        "nama": {
+            "awal": "Fitra",
+            "akhir": "Salam"
+        },
+        "status": "Mahasiswa",
+        "jeniskelamin": "Laki-laki",
+        "alamat": {
+            "kelurahan": "Rejosari",
+            "kecamatan": "Rejosari",
+            "kota": "Kotabumi"
+        },
+        "orangtua": {
+            "bapak": "Mr.Ambari",
+            "ibu": "Yus"
+        },
+        "sosialmedia": {
+            "instagram": "vtrasalam"
+        },
+        "hobi": {
+            "hobi1": "Main game",
+            "hobi2": "Gak tau pengen beli truk"
+        }
+    }
+}
