@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD AJAX</title>
+    <script src="jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <table border="1">
+        <thead>    
+            <tr>
+                <th>No</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Prodi</th>
+                <th>Angkatan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="list"></tbody>
+    </table>
+    <hr>
+    <form id="form" method="post">
+        <label for="nim">NIM </label>
+        <input type="text" id="nim" name="nim" required>
+        <br>
+        <label for="name">Nama </label>
+        <input type="text" id="name" name="nama"required>
+        <br>
+        <label for="prodi">Prodi </label>
+        <select name="prodi" id="prodi" required>
+            <option value="IF">Teknik Informatika</option>
+            <option value="EL">Teknik Elektro</option>
+            <option value="SI">Teknik Sipil</option>
+        </select>
+        <br>
+        <label for="angkatan">Angkatan </label>
+        <input type="number" id="angkatan" name="angkatan" required>
+    </form>
+    <button id="createButton" onclick="tambahData()">Tambah Data</button>
+    <button id="updateButton" onclick="updateData()">Update Data</button>
+
+    <script>
+        reLoad();
+        function reLoad(){
+            $.ajax({
+                type: "GET",
+                data: "",
+                url: "read.php",
+                success: function(result){
+                    var objResult = JSON.parse(result);
+                    var no = 1;
+                    $('#list').empty();
+                    $.each(objResult, function(key, val){
+                        var barisBaru=$("<tr>");
+                        barisBaru.html("<th>"+no+"</th><th>"+val.nim+"</th><th>"+val.nama+"</th><th>"+val.prodi+"</th><th>"+val.angkatan+"</th><th><button onclick='AMBILDATA("+val.id+")'>Edit</button> | <button onclick='deleteData("+val.id+")'>Hapus</button></th>");
+                        var dataHandler = $("#list");
+                        dataHandler.append(barisBaru);
+                        no++;
+                        $('#updateButton').hide();
+                        $('#createButton').show();
+                    });
+                }
+            });
+        }
+
+        function tambahData(){
+            var data = $('#form').serialize();
+                $.ajax({
+                    type : 'POST',
+                    url : "create.php",
+                    data : data,
+                    cache : false,
+                    success : function(data){
+                        reLoad();
+                    }
+                });
+        }
+
+        function AMBILDATA(id){
+            var id = id;
+            $.ajax({
+                type: "POST",
+                data: "id="+id,
+                url: "AMBILDATA.php",
+                success: function(result){
+                    var objResult =JSON.parse(result);
+                    $("[name = 'nim']").val(objResult.nim);
+                    $("[name = 'nama']").val(objResult.nama);
+                    $("[name = 'angkatan']").val(objResult.angkatan);
+                    $('#createButton').hide();
+                    $('#updateButton').show();
+                }
+            });
+        }
+
+        function updateData(){
+            var data = $('#form').serialize();
+                $.ajax({
+                    type : 'POST',
+                    url : "update.php",
+                    data : data,
+                    cache : false,
+                    success : function(data){
+                        reLoad();
+                    }
+                });
+        }
+
+        function deleteData(id){
+            var cek = confirm('Apakah anda ingin menghapus data ini?');
+            if(cek == true){
+                $.ajax({
+                    type: "POST",
+                    data: "id="+id,
+                    url: "delete.php",
+                    success: function(result){
+                        reLoad();
+                    }
+                });
+            }
+        }
+    </script>
+</body>
